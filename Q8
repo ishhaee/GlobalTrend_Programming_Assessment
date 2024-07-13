@@ -1,0 +1,34 @@
+
+#include<iostream>
+using namespace std;
+
+int gcd( int n1,int n2)
+{
+    int min;
+    if(n1>n2)
+        min=n2;
+    else
+        min=n1;
+    if (min==0)
+        return 1;
+    else
+    {
+        while(min>0)
+        {
+            if(n1%min==0&&n2%min==0)
+            {
+                return min;
+                break;
+            }
+            else
+                min--;
+            }
+        }
+    }
+int main()
+{
+    int num1=80,num2=16,res;
+    res=gcd(num1,num2);
+    cout<<" THE GREATEST COMMON DIVISOR IS : "<<res;
+    return 0;
+}
