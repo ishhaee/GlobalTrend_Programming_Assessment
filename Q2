@@ -1,0 +1,38 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int lengthOfLongestSubstring(string s)
+{
+    int n = s.length();
+    if (n == 0) return 0;
+    const int MAX_CHARS = 256;
+    int lastIndex[MAX_CHARS];
+    for (int i = 0; i < MAX_CHARS; ++i)
+     {
+        lastIndex[i] = -1;
+    }
+    int maxLength = 0;
+    int start = 0;
+    for (int end = 0; end < n; ++end)
+     {
+        char currentChar = s[end];
+        int currentCharIndex = static_cast<int>(currentChar);
+        if (lastIndex[currentCharIndex] >= start) 
+        {
+            start = lastIndex[currentCharIndex] + 1;
+        }
+        lastIndex[currentCharIndex] = end;
+        maxLength = max(maxLength, end - start + 1);
+    }
+    return maxLength;
+}
+
+int main()
+ {
+    string input = "abcabcbb";
+    cout << "Length of longest substring without repeating characters: "
+         << lengthOfLongestSubstring(input) << endl;
+    return 0;
+}
