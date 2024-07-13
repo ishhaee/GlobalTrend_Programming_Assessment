@@ -1,0 +1,31 @@
+#include <iostream>
+using namespace std;
+
+int maxDifference(int arr[], int size)
+{
+    if (size < 2)
+    {
+        cout<< "Array must have at least two elements\n";
+        return -1;
+    }
+    int minElement = arr[0];
+    int maxDiff = arr[1] - arr[0];
+    for (int i = 1; i < size; ++i) {
+        if (arr[i] - minElement > maxDiff) {
+            maxDiff = arr[i] - minElement;
+        }
+        if (arr[i] < minElement) {
+            minElement = arr[i];
+        }
+    }
+    return maxDiff;
+}
+
+int main() {
+    int arr[] = {2, 3, 10, 6, 4, 8, 1};
+    int size = sizeof(arr) / sizeof(arr[0]);
+    int maxDiff = maxDifference(arr, size);
+    cout << "Maximum difference: " << maxDiff << endl;
+
+    return 0;
+}
